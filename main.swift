@@ -28,11 +28,12 @@ var numberPrintValue = 5
 var stringPrintValue = "입니다"
 print("출력하려는 값은 \(numberPrintValue) \(stringPrintValue)")
 
+// swift의 기본형은 빈값(nil)을 담을 수 없습니다.
 // 빈값을 담을 수 있는 Optional type이라는 것이 별도로 존재합니다
-// 빈값(타 언어의 Null)은 swift에서는 nil 이라고 합니다
+// 자료형 뒤에 ?를 붙여 선언합니다
 var optValue : String? = nil
 
-// Optional 타입 중 자동으로 normal 타입으로의 형변환은 !를 이용합니다
+// Optional 타입 선언시 자동으로 normal 타입으로의 형변환은 !를 이용합니다
 var optAutoChange : String! = nil
 optAutoChange = "optional type"
 print(optAutoChange)
