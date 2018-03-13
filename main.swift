@@ -1,7 +1,7 @@
 import Foundation
 
 
-// lesson 1
+print("\n\n#lesson 1 - Constant, Variable \n")
 
 // Swift는 문장의 끝에 세미콜론을 쓰지 않습니다
 
@@ -28,10 +28,21 @@ var numberPrintValue = 5
 var stringPrintValue = "입니다"
 print("출력하려는 값은 \(numberPrintValue) \(stringPrintValue)")
 
+// 빈값을 담을 수 있는 Optional type이라는 것이 별도로 존재합니다
+// 빈값(타 언어의 Null)은 swift에서는 nil 이라고 합니다
+var optValue : String? = nil
+
+// Optional 타입 중 자동으로 normal 타입으로의 형변환은 !를 이용합니다
+var optAutoChange : String! = nil
+optAutoChange = "optional type"
+print(optAutoChange)
 
 
 
-// lesson 2 - Array
+
+
+
+print("\n\n#lesson 2 - Array \n")
 
 // 컬렉션의 종류에는 Array, Dictionary, Tuple, Set 이 존재합니다
 
@@ -88,4 +99,23 @@ print(strArrayWithType[1...3])
 strArrayWithType[1...3] = ["value", "is", "changed"]
 print(strArrayWithType)
 
-// 
+
+
+
+print("\n\n#lesson 3 - Dictionary \n")
+
+// Dictionary는 key:value 형태의 Collection 입니다
+var foodDic = ["김밥" : 2000, "라면" : 3000, "떡볶이" : 2500]
+print(foodDic)
+
+// Dictionary의 요소는 Optional type이기 때문에 !를 붙여야 합니다
+print(foodDic["라면"]!)
+
+// 역시 만들때부터 타입을 지정할 수 있습니다.
+var emptyDicWithType : [String : String]
+var emptyDicFromObject : Dictionary<String, String>
+
+// 딕셔너리의 크기는 이렇게 구합니다
+print(foodDic.count)
+
+// 딕셔너리는 
