@@ -1,6 +1,7 @@
 import Foundation
 
 
+/**/
 print("\n\n#lesson 1 - Constant, Variable \n")
 
 // Swift는 문장의 끝에 세미콜론을 쓰지 않습니다
@@ -32,17 +33,20 @@ print("출력하려는 값은 \(numberPrintValue) \(stringPrintValue)")
 // 빈값을 담을 수 있는 Optional type이라는 것이 별도로 존재합니다
 // 자료형 뒤에 ?를 붙여 선언합니다
 var optValue : String? = nil
+optValue = "optional type"
+print(optValue) // 직접사용이 불가. 컴파일중 warning이 뜹니다
+print(optValue!) // 이렇게 강제로 unwraping()합니다
 
-// Optional 타입 선언시 자동으로 normal 타입으로의 형변환은 !를 이용합니다
+// Optional 타입 선언시 자동 unwraping이 되도록 하려면 !를 이용합니다
 var optAutoChange : String! = nil
-optAutoChange = "optional type"
+optAutoChange = "auto casting optional type"
 print(optAutoChange)
+/**/
 
 
 
 
-
-
+/*
 print("\n\n#lesson 2 - Array \n")
 
 // 컬렉션의 종류에는 Array, Dictionary, Tuple, Set 이 존재합니다
@@ -99,6 +103,8 @@ print(strArrayWithType[1...3])
 // 한꺼번에 수정하는 기능도 있습니다
 strArrayWithType[1...3] = ["value", "is", "changed"]
 print(strArrayWithType)
+*/
+
 
 
 
