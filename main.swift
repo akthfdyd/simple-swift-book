@@ -106,6 +106,11 @@ print(strArrayWithType[1...3])
 strArrayWithType[1...3] = ["value", "is", "changed"]
 print(strArrayWithType)
 
+// 다중으로 사용할 수 있습니다.
+var multiArr = [["A", "B", "C"], strArray, strArrayWithType]
+print(multiArr)
+print(multiArr[1])
+
 
 
 
@@ -133,5 +138,9 @@ print(foodDic)
 // 다중으로 사용하는 것이 가능합니다.
 var foodDicDic = ["분식": foodDic, "양식":["피자": 8000, "스테이크": 7000]]
 print(foodDicDic)
+print(foodDicDic["양식"]!)
+print(foodDicDic["분식"]!["라면"]!)
 
-
+// Optional Type이라 nil을 넣어 해당 key-value를 제거할 수 있습니다
+foodDicDic["분식"]!["떡볶이"] = nil
+print(foodDicDic["분식"]!)
