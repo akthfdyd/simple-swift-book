@@ -1,10 +1,13 @@
 import Foundation
 
 
-/**/
+
 print("\n\n#lesson 1 - Constant, Variable \n")
 
 // Swift는 문장의 끝에 세미콜론을 쓰지 않습니다
+// main()함수는 없습니다
+// C와 같은 file dependency는 없습니다
+// 대신 module 을 가져옵니다
 
 // 상수(변경불가)는 let으로, 변수는 var로 선언 합니다
 let CONSTANT_INT : Int = 10
@@ -41,12 +44,11 @@ print(optValue!) // 이렇게 강제로 unwraping()합니다
 var optAutoChange : String! = nil
 optAutoChange = "auto casting optional type"
 print(optAutoChange)
-/**/
 
 
 
 
-/*
+
 print("\n\n#lesson 2 - Array \n")
 
 // 컬렉션의 종류에는 Array, Dictionary, Tuple, Set 이 존재합니다
@@ -103,7 +105,6 @@ print(strArrayWithType[1...3])
 // 한꺼번에 수정하는 기능도 있습니다
 strArrayWithType[1...3] = ["value", "is", "changed"]
 print(strArrayWithType)
-*/
 
 
 
@@ -112,17 +113,25 @@ print(strArrayWithType)
 print("\n\n#lesson 3 - Dictionary \n")
 
 // Dictionary는 key:value 형태의 Collection 입니다
-var foodDic = ["김밥" : 2000, "라면" : 3000, "떡볶이" : 2500]
+var foodDic = ["김밥": 2000, "라면": 3000, "떡볶이": 2500]
 print(foodDic)
 
 // Dictionary의 요소는 Optional type이기 때문에 !를 붙여야 합니다
 print(foodDic["라면"]!)
 
-// 역시 만들때부터 타입을 지정할 수 있습니다.
+// 역시 만들때부터 type을 지정할 수 있습니다.
 var emptyDicWithType : [String : String]
 var emptyDicFromObject : Dictionary<String, String>
 
-// 딕셔너리의 크기는 이렇게 구합니다
+// 크기는 이렇게 구합니다
 print(foodDic.count)
 
-// 딕셔너리는 
+// key를 가지고 직접 value를 변경할 수 있습니다
+foodDic["김밥"] = 1500
+print(foodDic)
+
+// 다중으로 사용하는 것이 가능합니다.
+var foodDicDic = ["분식": foodDic, "양식":["피자": 8000, "스테이크": 7000]]
+print(foodDicDic)
+
+
