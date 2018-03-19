@@ -225,7 +225,7 @@ class MiniOven: Oven {
 
 // 클래스가 아닌 프로토콜을 타입으로 지정하여 객체를 생성할 수가 있습니다.
 // 이 경우 강제적으로 프로토콜에 선언된 변수와 기능만 이용할 수 있습니다.
-var microwaveOven : Oven = MiniOven(type: "전자렌지")
+var microwaveOven: Oven = MiniOven(type: "전자렌지")
 microwaveOven.turnOn()
 
 
@@ -235,13 +235,50 @@ microwaveOven.turnOn()
 
 print("\n\n#lesson - Extension")
 
+// 익스텐션은 class를 여러개의 구현으로 나누어 적는 기법입니다.
+// swift에는 존재하지 않는 file dependency를 보강하기 위한 부분으로 보입니다.
+class BrunchCafe {
+    func dripCoffee(){
+        print("커피 드립하는 중")
+    }
+}
+
+// 클래스와 동일한 이름으로 만듭니다.
+extension BrunchCafe {
+    func cookBrunch(){
+        print("브런치 요리하는 중")
+    }
+}
+
+// 나누어 구현했지만 하나의 객체로 사용할 수 있습니다.
+var myCafe = BrunchCafe()
+myCafe.dripCoffee()
+myCafe.cookBrunch()
+
+// 저장 프로퍼티는 추가할 수 없습니다. 계산 프로퍼티만 가능합니다.
+extension BrunchCafe {
+//    var coffeePowder: String! // 에러!
+    var iceTea: String! {
+        return "아이스티"
+    }
+}
+print(myCafe.iceTea);
+
+// initializer는 convinence 인 경우에만 추가가 가능합니다.
+extension BrunchCafe {
+//    init(){} // 에러!
+    convenience init(type: String){
+        self.init()
+    }
+}
 
 
 
 
 
+print("\n\n#lesson - Extension with Protocol")
 
-
+// initializer가 없다는 전제 하에, 익스텐션이 프로토콜을 구현할 수 있습니다.
 
 
 
