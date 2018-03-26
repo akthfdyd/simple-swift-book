@@ -352,7 +352,7 @@ do {
 do {
     try str.write(toFile: logPath, atomically: true, encoding: String.Encoding.utf8)
 } catch let error{
-    print("에러 발생 -> ", error)
+    print("에러 발생 -> ", error.localizedDescription)
 }
 
 // try의 위치에 유의하기 바랍니다. 값을 반환하는 함수의 경우 대입되기 이전에 검사해 주어야 합니다.
@@ -360,7 +360,7 @@ do{
     let readWrongTxt = try String(contentsOfFile: logPath)
     print(readWrongTxt)
 } catch let error{
-    print("에러 발생 -> ", error)
+    print("에러 발생 -> ", error.localizedDescription)
 }
 
 // 에러 발생시 nil이 반환되도록 강제로 optional type 캐스팅할 수 있습니다.
@@ -370,6 +370,72 @@ print(type(of: readWrongTxt))
 
 
 
+
+print("\n\n#lesson - Custom Error")
+
+// 에러는 enum, struct, class로 커스텀이 가능합니다.
+// enum으로 정의해 봅니다.
+enum CustomErrorEnum: Error{
+    case bug
+    case fatal
+    case critical
+}
+
+// struct로 정의해 봅니다.
+struct CustomErrorStruct: Error{
+    var msg: String
+}
+
+// class로 정의해 봅니다.
+class CustomErrorClass: Error{
+}
+
+// 각기 다른 커스텀 에러들을 분기하는 방법은 다음과 같습니다.
+do{
+//    let error = CustomErrorEnum.critical
+    let error = CustomErrorStruct(msg: "에러 구조체")
+//    let error = CustomErrorClass()
+    throw error // 에러 발생
+} catch let error where error is CustomErrorEnum {
+    print("CustomErrorEnum catch")
+} catch let error where error is CustomErrorStruct {
+    print("CustomErrorStruct catch")
+} catch let error where error is CustomErrorClass {
+    print("CustomErrorClass catch")
+}
+
+// 커스텀 에러를 내포한 함수를 작성해 보겠습니다.
+func dangerousFunc(num: Int) throws {
+    guard num > 0 else{
+        throw CustomErrorEnum.bug
+    }
+    print("0보다 큼")
+}
+
+// do try catch로 실행해 봅니다.
+do {
+    try dangerousFunc(num: 0)
+} catch let error where error is CustomErrorEnum {
+    print("0보다 크지 않아서 에러")
+}
+
+// 리턴값이 필요한 함수의 경우, Optional type을 이용하면 에러시 nil을 받을 수 있습니다.
+func dangerousReturn(num: Int) throws -> String {
+    guard num > 0 else{
+        throw CustomErrorEnum.bug
+    }
+    return "0 보다 크다"
+}
+
+// do try catch로 실행해 봅니다.
+var isBiggerThanZero = try? dangerousReturn(num: 0)
+isBiggerThanZero = try? dangerousReturn(num: 1)
+
+
+
+
+
+print("\n\n#lesson - Error with closure")
 
 
 
