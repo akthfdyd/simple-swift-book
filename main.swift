@@ -43,6 +43,15 @@ optValue = "optional type"
 //print(optValue) // 직접사용이 불가! 컴파일중 warning이 뜹니다
 print(optValue!) // 이렇게 강제로 unwraping()합니다
 
+// 강제언래핑의 위럼을 줄이려면? 값을 일반 자료형으로 복제하여 검사를 해야겠지요
+if let op2 = optValue{
+    print(op2)
+}
+
+// 기본값을 쓰려면 다음과 같이 사용합니다.
+let op1 = optValue ?? "" // 값이 없으면 ""를 기본값으로 대입
+print(op1)
+
 // Optional 타입 선언시 자동 unwraping이 되도록 하려면 !를 이용합니다
 var optAutoChange : String! = nil
 optAutoChange = "auto casting optional type"
@@ -150,6 +159,140 @@ print(foodDicDic["분식"]!)
 
 
 
+print("\n\n#lesson 4 - Loop \n")
+
+// swift에서의 Loop는 크게 데이터 집단에 대한 반복인 for문,
+// 그리고 조건에 대한 반복인 while문이 있습니다.
+
+// 반복의 대상은 1부터 10까지의 정수로 해 보겠습니다.
+let waitOrders = 1...3
+for order in waitOrders {
+    print(String(order))
+}
+
+// 바로 for in 문에 숫자 범위데이터를 적을 수도 있습니다.
+for order in 4...6 {
+    print(String(order))
+}
+
+// 배열은 당연히 되고요
+for word in strArrayWithType {
+//    루프상수는 let으로 지정되는 상수와 같으므로 값을 바꿀 수 없습니다.
+//    word = "cannot assign!" // 에러!
+}
+
+// 딕셔너리도 됩니다. 그런데, 나오는 순서는 어떻게 될지 몰라요.
+for food in foodDic {
+    print(food.key)
+}
+
+// 단순한 횟수 반복이면 루프상수는 언더바로 생략 가능합니다.
+for _ in foodDic {
+    // 반복중
+}
+
+var aNumberForWhile = 1
+// while문은 조건이 맞는 상황에서만 반복됩니다
+while aNumberForWhile < 10 {
+    aNumberForWhile = aNumberForWhile + 3
+    print("while 실행됨, \(aNumberForWhile) < 10")
+}
+
+var aNumberForRepeat = 1
+// repeat문은 조건을 뒤에 적습니다. 먼저 블럭을 실행하고 나서 반복을 할것인지 while 조건을 검사합니다.
+repeat {
+    aNumberForRepeat = aNumberForRepeat + 3
+    print("repeat 실행됨, \(aNumberForRepeat) < 10")
+}
+while aNumberForRepeat < 10
+
+aNumberForWhile = 11
+// 10보다 작은 수를 넣지 않았으니 아래 while문은 아예 동작을 하지 않겠지요?
+while aNumberForWhile < 10 {
+    aNumberForWhile = aNumberForWhile + 3
+    print("11을 넣은 뒤 while 실행될까?")
+}
+print("11을 넣은 뒤 aNumberForWhile값 = \(aNumberForWhile)")
+
+aNumberForRepeat = 11
+// repeat-while 문이라면 어떨까요? 차이를 알아봅시다.
+repeat {
+    aNumberForRepeat = aNumberForRepeat + 3
+    print("11을 넣은 뒤 repeat 실행될까?")
+}
+while aNumberForRepeat < 10
+print("11을 넣은 뒤 aNumberForRepeat값 = \(aNumberForRepeat)")
+
+
+
+
+
+print("\n\n#lesson 5 - Branch statement \n")
+
+var coffeeDic = ["아메리카노": 2000, "마끼아또": 3000, "라떼": 2500]
+
+// 기본적인 조건문은 타 언어와 크게 다르지 않습니다.
+if coffeeDic["아메리카노"] == 1000 {
+    print("아메리카노는 1000원이 맞습니다")
+} else if coffeeDic["아메리카노"] == 2000 {
+    print("아메리카노는 2000원이 맞습니다")
+} else {
+    print("아메리카노의 가격은 1000원도 2000원도 아닙니다")
+}
+
+// 함수 내에서는 guard를 사용하여 else문만 체크할 수 있다는 차이는 있습니다.
+func checkAmericanoPrice() {
+    guard coffeeDic["아메리카노"] == 1000 else {
+        print("아메리카노는 1000원이 아닙니다")
+        return
+    }
+    print("아메리카노는 1000원인가 봅니다")
+}
+checkAmericanoPrice()
+
+
+// #available
+
+
+// swift의 switch문은 타 언어와 크게 다르지는 않으나, break를 쓰지 않는다는 점에서 차이가 있습니다.
+// 만일 아래 케이스의 문장과 함께 실행되길 원한다면, fallthrough라고 적어주면 됩니다.
+coffeeDic["아메리카노"] = 3000
+switch coffeeDic["아메리카노"] {
+case 1000:
+    print("아메리카노가 1000원인 케이스")
+case 2000:
+    print("아메리카노가 2000원인 케이스")
+case 3000:
+    fallthrough
+default:
+    print("아메리카노가 1000원이나 2000원 외의 다른 가격인 케이스")
+}
+
+
+
+
+// enum 활용 switch
+
+// 함수
+
+// 객체로서의 함수
+
+// 클로저
+
+// 구조체
+
+// 클래스, 프로퍼티, 메소드
+
+// 타입 메소드
+
+// 옵셔널 체인
+
+
+
+
+
+
+
 
 
 
@@ -186,7 +329,7 @@ class HiltonHotel: Hotel{
     func dripCoffee() {
         print("Coffee drip!")
     }
-    
+
     func cook() {
         print("Cooking!")
     }
@@ -263,7 +406,7 @@ myCafe.cookBrunch()
 
 // 저장 프로퍼티는 추가할 수 없습니다. 계산 프로퍼티만 가능합니다.
 extension BrunchCafe {
-//    var coffeePowder: String! // 에러!
+    //    var coffeePowder: String! // 에러!
     var iceTea: String! {
         return "아이스티"
     }
@@ -272,7 +415,7 @@ print(myCafe.iceTea);
 
 // initializer는 convinence 인 경우에만 추가가 가능합니다.
 extension BrunchCafe {
-//    init(){} // 에러!
+    //    init(){} // 에러!
     convenience init(type: String){
         self.init()
     }
@@ -286,9 +429,9 @@ print("\n\n#lesson - Extension with Protocol")
 
 // initializer가 없다는 전제 하에, 익스텐션이 프로토콜을 확장구현할 수 있습니다.
 protocol Pasta {
-//    func boilWater(){ // 에러! 프로토콜에서는 함수의 내용을 구현할 수 없습니다.
-//        print("boiling")
-//    }
+    //    func boilWater(){ // 에러! 프로토콜에서는 함수의 내용을 구현할 수 없습니다.
+    //        print("boiling")
+    //    }
 }
 
 // 하지만 익스텐션에서는 함수의 구현이 가능합니다.
@@ -392,9 +535,9 @@ class CustomErrorClass: Error{
 
 // 각기 다른 커스텀 에러들을 분기하는 방법은 다음과 같습니다.
 do{
-//    let error = CustomErrorEnum.critical
+    //    let error = CustomErrorEnum.critical
     let error = CustomErrorStruct(msg: "에러 구조체")
-//    let error = CustomErrorClass()
+    //    let error = CustomErrorClass()
     throw error // 에러 발생
 } catch let error where error is CustomErrorEnum {
     print("CustomErrorEnum catch")
@@ -436,7 +579,6 @@ isBiggerThanZero = try? dangerousReturn(num: 1)
 
 
 print("\n\n#lesson - Error with closure")
-
 
 
 
