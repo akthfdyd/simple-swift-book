@@ -269,15 +269,60 @@ default:
 }
 
 
-
-
 // enum 활용 switch
 
-// 함수
+
+
+
+
+print("\n\n#lesson 6 - Function \n")
+
+// 함수의 기본 형태 입니다.
+func thisIsAFunction(factor: Int) -> Void{
+    print("this is a function, factor = \(factor)")
+}
+thisIsAFunction(factor: 3)
+
+// 인자가 들어오지 않을 경우 사용할 기본값을 줄 수 있습니다.
+func canUseDefaultValue(factor: Int=5){
+    print("기본값은 5입니다, factor = \(factor)")
+}
+canUseDefaultValue(factor: 3)
+canUseDefaultValue()
 
 // 객체로서의 함수
+let objFunc = thisIsAFunction(factor:)
+objFunc(8)
+let objFunc2 = thisIsAFunction(factor: 5)
+objFunc
 
+
+
+
+
+print("\n\n#lesson 7 - Closure \n")
 // 클로저
+let clo = { () -> String in
+    return "this is closure"
+}
+print(clo())
+
+// 함수를 인자로 넘겨받아 봅니다.
+func thisUseClosure(fn: () -> String){
+    print(fn())
+}
+thisUseClosure(fn: clo)
+
+// 리턴값으로 함수를 줄 수 있습니다.
+func thisReturnClosure() -> () -> String{
+    return clo
+}
+let fn = thisReturnClosure()
+print(fn())
+
+
+
+
 
 // 구조체
 
